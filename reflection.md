@@ -18,6 +18,7 @@ Scheduler: Attributes = Owner, Pets, tasks      Methods = Add/modify/delete task
 
 - Did your design change during implementation?
 - If yes, describe at least one change and why you made it.
+I gave Claude permission to include additional attributes and methods it believed were worth considering based on the spec, and for the most part all of them look relevant. I may need to take a second, deeper look to filter out unnecessary components of each class.
 
 ---
 

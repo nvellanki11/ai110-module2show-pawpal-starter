@@ -7,7 +7,6 @@ classDiagram
         +add_pet(pet: Pet) void
         +remove_pet(pet: Pet) void
         +create_schedule() DailyPlan
-        +set_available_time(minutes: int) void
     }
 
     class Pet {
@@ -32,12 +31,10 @@ classDiagram
         +int recurrence_interval_days
         +is_due() bool
         +mark_complete() void
-        +notify_owner() void
     }
 
     class Scheduler {
         +Owner owner
-        +List~Pet~ pets
         +List~Task~ tasks
         +add_task(task: Task) void
         +modify_task(task: Task) void
@@ -63,7 +60,6 @@ classDiagram
         +Pet pet
         +String start_time
         +get_end_time() String
-        +get_duration() int
     }
 
     Owner "1" --> "0..*" Pet : owns
