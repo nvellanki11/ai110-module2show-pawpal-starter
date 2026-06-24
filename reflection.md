@@ -5,7 +5,14 @@
 **a. Initial design**
 
 - Briefly describe your initial UML design.
+A user should be able to create, modify and delete care tasks, be able to do the same with their
+personal constraints, and create and view a plan based on their parameters
 - What classes did you include, and what responsibilities did you assign to each?
+The key objects are Owner, Pet, Task, and Scheduler
+Owner: Attributes = Pets, Constraints, Scheduler      Methods = Add/delete pet, Create schedule
+Pet: Attributes = Animal        Methods = Do {task}
+Task: Attributes = Description, Last Completed      Methods = Notify owner
+Scheduler: Attributes = Owner, Pets, tasks      Methods = Add/modify/delete task
 
 **b. Design changes**
 
