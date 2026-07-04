@@ -64,6 +64,7 @@ Reasoning: Scheduled 6 task(s) using 115 of 120 available minutes. High-priority
 ```bash
 # Run the full test suite:
 pytest
+python3 -m pytest
 
 # Run with coverage:
 pytest --cov
@@ -73,7 +74,15 @@ Sample test output:
 
 ```
 # Paste your pytest output here
-```
+==================================================== test session starts ====================================================
+platform darwin -- Python 3.14.2, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/nishantvellanki/Documents/ai110-module2show-pawpal-starter
+plugins: anyio-4.14.0
+collected 35 items                                                                                                          
+tests/test_pawpal.py ...................................                                                              [100%]
+
+==================================================== 35 passed in 0.05s ===========================
+Based on test results, I am fully confident in my system (5/5)
 
 ## 📐 Smarter Scheduling
 Sort Tasks | By priority, then duration
