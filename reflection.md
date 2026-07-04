@@ -27,12 +27,16 @@ I gave Claude permission to include additional attributes and methods it believe
 **a. Constraints and priorities**
 
 - What constraints does your scheduler consider (for example: time, priority, preferences)?
+My scheduler primarily considers time and priority
 - How did you decide which constraints mattered most?
+Time made the most impact, because some tasks are sensitive to it and a certain ordering matters for tasks. Additionally, what is most important is that the tasks get done in time, more important than the order they get done.
 
 **b. Tradeoffs**
 
 - Describe one tradeoff your scheduler makes.
+Mine actually checks for overlapping time matches, not exact time matches
 - Why is that tradeoff reasonable for this scenario?
+Because in most cases tasks should not happen simultaneuosly
 
 ---
 

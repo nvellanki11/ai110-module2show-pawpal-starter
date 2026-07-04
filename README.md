@@ -76,6 +76,10 @@ Sample test output:
 ```
 
 ## 📐 Smarter Scheduling
+Sort Tasks | By priority, then duration
+Filter Tasks | By priority, based on the time allotted
+Conflict Checking | Ensures tasks do not overlap
+Reoccurring Tasks | Auto-rescheduling of tasks that happen on a daily, weekly basis
 
 > Fill in once you've implemented scheduling logic.
 

@@ -39,6 +39,10 @@ classDiagram
         +add_task(task: Task) void
         +modify_task(task: Task) void
         +delete_task(task: Task) void
+        +complete_task(task: Task) Task
+        +find_conflicts(plan: DailyPlan) List~tuple~
+        +has_conflicts(plan: DailyPlan) bool
+        +get_conflict_warnings(plan: DailyPlan) List~String~
         +generate_plan() DailyPlan
         +sort_tasks() List~Task~
         +filter_tasks(available_time: int) List~Task~

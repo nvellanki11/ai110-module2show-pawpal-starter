@@ -7,6 +7,12 @@ from typing import Optional
 _PRIORITY_ORDER = {"high": 0, "medium": 1, "low": 2}
 
 
+def _time_to_minutes(time_str: str) -> int:
+    """Convert an "HH:MM" string to minutes since midnight."""
+    h, m = map(int, time_str.split(":"))
+    return h * 60 + m
+
+
 @dataclass
 class Task:
     name: str
@@ -60,8 +66,7 @@ class ScheduledEntry:
 
     def get_end_time(self) -> str:
         """Compute the HH:MM end time from start_time plus task duration."""
-        h, m = map(int, self.start_time.split(":"))
-        total = h * 60 + m + self.task.duration_minutes
+        total = _time_to_minutes(self.start_time) + self.task.duration_minutes
         return f"{total // 60:02d}:{total % 60:02d}"
 
 
@@ -118,6 +123,55 @@ class Scheduler:
     def delete_task(self, task: Task) -> None:
         """Remove a task from the scheduler's managed task list."""
         self.tasks.remove(task)
+
+    def complete_task(self, task: Task) -> Optional[Task]:
+        """Mark a task complete; if it recurs daily or weekly, add a new instance for the next occurrence."""
+        task.mark_complete()
+        if not task.is_recurring or task.recurrence_interval_days not in (1, 7):
+            return None
+
+        owning_pet = next((pet for pet in self.owner.pets if task in pet.tasks), None)
+        if owning_pet is None:
+            return None
+
+        next_task = Task(
+            name=task.name,
+            description=task.description,
+            duration_minutes=task.duration_minutes,
+            priority=task.priority,
+            category=task.category,
+            is_recurring=task.is_recurring,
+            recurrence_interval_days=task.recurrence_interval_days,
+        )
+        owning_pet.add_task(next_task)
+        return next_task
+
+    def find_conflicts(self, plan: DailyPlan) -> list[tuple[ScheduledEntry, ScheduledEntry]]:
+        """Return pairs of entries in the plan whose time ranges overlap, regardless of pet."""
+        conflicts = []
+        for i, entry_a in enumerate(plan.entries):
+            start_a = _time_to_minutes(entry_a.start_time)
+            end_a = start_a + entry_a.task.duration_minutes
+            for entry_b in plan.entries[i + 1:]:
+                start_b = _time_to_minutes(entry_b.start_time)
+                end_b = start_b + entry_b.task.duration_minutes
+                if start_a < end_b and start_b < end_a:
+                    conflicts.append((entry_a, entry_b))
+        return conflicts
+
+    def has_conflicts(self, plan: DailyPlan) -> bool:
+        """Return True if any two entries in the plan overlap in time."""
+        return bool(self.find_conflicts(plan))
+
+    def get_conflict_warnings(self, plan: DailyPlan) -> list[str]:
+        """Return a human-readable warning message for each pair of entries scheduled at the same time."""
+        return [
+            f"Warning: '{entry_a.task.name}' for {entry_a.pet.name} "
+            f"({entry_a.start_time}-{entry_a.get_end_time()}) overlaps with "
+            f"'{entry_b.task.name}' for {entry_b.pet.name} "
+            f"({entry_b.start_time}-{entry_b.get_end_time()})."
+            for entry_a, entry_b in self.find_conflicts(plan)
+        ]
 
     def sort_tasks(self) -> list[Task]:
         """Return tasks sorted by priority (high→low) then shortest duration first."""

@@ -17,15 +17,6 @@ biscuit.add_task(Task(
     recurrence_interval_days=1,
 ))
 biscuit.add_task(Task(
-    name="Breakfast",
-    description="Morning kibble serving",
-    duration_minutes=10,
-    priority="high",
-    category="feeding",
-    is_recurring=True,
-    recurrence_interval_days=1,
-))
-biscuit.add_task(Task(
     name="Grooming",
     description="Brush coat and check ears",
     duration_minutes=45,
@@ -34,8 +25,26 @@ biscuit.add_task(Task(
     is_recurring=True,
     recurrence_interval_days=7,
 ))
+biscuit.add_task(Task(
+    name="Breakfast",
+    description="Morning kibble serving",
+    duration_minutes=10,
+    priority="high",
+    category="feeding",
+    is_recurring=True,
+    recurrence_interval_days=1,
+))
 
 # --- Whiskers's tasks ---
+whiskers.add_task(Task(
+    name="Dinner",
+    description="Evening wet food serving",
+    duration_minutes=5,
+    priority="high",
+    category="feeding",
+    is_recurring=True,
+    recurrence_interval_days=1,
+))
 whiskers.add_task(Task(
     name="Litter Box",
     description="Scoop and refresh litter",
@@ -51,15 +60,6 @@ whiskers.add_task(Task(
     duration_minutes=20,
     priority="medium",
     category="enrichment",
-    is_recurring=True,
-    recurrence_interval_days=1,
-))
-whiskers.add_task(Task(
-    name="Dinner",
-    description="Evening wet food serving",
-    duration_minutes=5,
-    priority="high",
-    category="feeding",
     is_recurring=True,
     recurrence_interval_days=1,
 ))
