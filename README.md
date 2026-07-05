@@ -103,10 +103,10 @@ Reoccurring Tasks | Auto-rescheduling of tasks that happen on a daily, weekly ba
 
 Describe your app in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. As a user, enter your name in the Owner section, as well as the time you have available in a day
+2. Enter details about your pet(s), including it's name, species, breed, and age in human years. Users can enter more than one pet if they have
+3. After creating a pet, give it tasks! Enter the task's name, time it will take, priority of the task, the general category, and a description of the task.
+4. After entering Pets and Tasks, they will show up in a table underneath each section. Users can review an unsorted view of their schedule
+5. Press Generate Schedule at the bottom of the screen to create a Schedule from the inputs in the Pets and Tasks sections. Plan will be generated in chronological order for the day, and warnings will be sent if tasks happen to go past the availability duration or there are overlapping events.
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or link to a demo video here -->

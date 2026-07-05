@@ -45,12 +45,16 @@ Because in most cases tasks should not happen simultaneuosly
 **a. How you used AI**
 
 - How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
+I used Claude to brainstorm the system for this project, implement key methods, refactoring, and UI creation
 - What kinds of prompts or questions were most helpful?
+Prompts that had just the right amount of context, and questions that specifically asked to explain implementation were most helpful.
 
 **b. Judgment and verification**
 
 - Describe one moment where you did not accept an AI suggestion as-is.
+A suggestion which went over-the-top in its system planning, I chose to tighten the implementation closer to the project's expectations
 - How did you evaluate or verify what the AI suggested?
+I carefully reviewed its system plan and cross-referenced with the project rubric
 
 ---
 
@@ -59,12 +63,16 @@ Because in most cases tasks should not happen simultaneuosly
 **a. What you tested**
 
 - What behaviors did you test?
+Inputs, filtering/sorting, test cases
 - Why were these tests important?
+They represent the core functions of the app, essentially why the user would want to use it
 
 **b. Confidence**
 
 - How confident are you that your scheduler works correctly?
+Very confident, I would give it a 9/10 (just in case)
 - What edge cases would you test next if you had more time?
+Probably opening the app in different browsers to see if it renders everywhere
 
 ---
 
@@ -73,11 +81,14 @@ Because in most cases tasks should not happen simultaneuosly
 **a. What went well**
 
 - What part of this project are you most satisfied with?
+The simple, yet wholistic functionality of the app. It is both minimal and effective
 
 **b. What you would improve**
 
 - If you had another iteration, what would you improve or redesign?
+Probably build a nicer UI
 
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+I didn't even know it could plan and implement a system like it did, which is good to know

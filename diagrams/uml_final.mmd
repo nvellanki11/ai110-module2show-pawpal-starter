@@ -1,0 +1,77 @@
+classDiagram
+    class Owner {
+        +String name
+        +int available_time_minutes
+        +List~Pet~ pets
+        +Scheduler scheduler
+        +add_pet(pet: Pet) void
+        +remove_pet(pet: Pet) void
+        +create_schedule() DailyPlan
+    }
+
+    class Pet {
+        +String name
+        +String species
+        +String breed
+        +int age
+        +List~Task~ tasks
+        +add_task(task: Task) void
+        +remove_task(task: Task) void
+        +get_pending_tasks() List~Task~
+    }
+
+    class Task {
+        +String name
+        +String description
+        +int duration_minutes
+        +String priority
+        +String category
+        +date last_completed
+        +bool is_recurring
+        +int recurrence_interval_days
+        +is_due() bool
+        +mark_complete() void
+    }
+
+    class Scheduler {
+        +Owner owner
+        +List~Task~ tasks
+        +add_task(task: Task) void
+        +modify_task(task: Task) void
+        +delete_task(task: Task) void
+        +complete_task(task: Task) Task
+        +find_conflicts(plan: DailyPlan) List~tuple~
+        +has_conflicts(plan: DailyPlan) bool
+        +get_conflict_warnings(plan: DailyPlan) List~String~
+        +generate_plan() DailyPlan
+        +sort_tasks() List~Task~
+        +filter_tasks(available_time: int) List~Task~
+        +explain_plan(plan: DailyPlan) String
+    }
+
+    class DailyPlan {
+        +date date
+        +List~ScheduledEntry~ entries
+        +int total_duration_minutes
+        +String reasoning
+        +add_entry(entry: ScheduledEntry) void
+        +is_feasible(available_time: int) bool
+        +display() String
+    }
+
+    class ScheduledEntry {
+        +Task task
+        +Pet pet
+        +String start_time
+        +get_end_time() String
+    }
+
+    Owner "1" --> "0..*" Pet : owns
+    Owner "1" --> "0..1" Scheduler : uses
+    Scheduler "1" --> "1" Owner : coordinates
+    Pet "1" --> "0..*" Task : has
+    Scheduler "1" --> "0..*" Task : manages
+    Scheduler ..> DailyPlan : generates
+    DailyPlan "1" *-- "0..*" ScheduledEntry : contains
+    ScheduledEntry --> Task : schedules
+    ScheduledEntry --> Pet : for
